@@ -1,11 +1,13 @@
 import sqlite3
 
 conn = sqlite3.connect('categories.db')
-c = conn.cursor()
+cursor = conn.cursor()
 
-c.execute('''CREATE TABLE categories
-        (categoryID VARCHAR(20) PRIMARY KEY NOT NULL,
-                categoryName TEXT NOT NULL)''')
-
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS categories (
+    category_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    category_name VARCHAR(50) UNIQUE NOT NULL
+);
+""")
 conn.commit()
 conn.close()
